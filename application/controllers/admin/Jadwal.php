@@ -190,6 +190,7 @@ class Jadwal extends MY_Controller
         // $data['jadwal'] = $groupedDayArray;
         // $data['list'] = $this->M_kelas->get_all_kelas("")->result_array();
         // $this->template->load('template_admin', 'admin/jadwal/lihat_jadwal', $data);
+        $this->session->set_flashdata('msg', 'Berhasil Mengenerate Jadwal Baru|success');
         redirect('admin/jadwal');
     }
 
