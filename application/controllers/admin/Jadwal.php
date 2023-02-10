@@ -75,11 +75,10 @@ class Jadwal extends MY_Controller
         // die;
         $labelDay = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
-
+        $key = 0;
         foreach ($arrayKelas as $idKelas) {
             $arrayMapel[$idKelas['kelas_alias']] = $this->M_pelajaran->count_mapel_kelas($idKelas['id'])->result_array();
-            // $this->debug($arrayMapel[$idKelas['kelas_alias']]);
-            // die;
+
 
             $tempArray = $arrayMapel[$idKelas['kelas_alias']];
 
@@ -91,9 +90,13 @@ class Jadwal extends MY_Controller
                     $tempArray[$index]['conflict_value'] = round($constValue / $tempArray[$index]['cg_value'], 4);
                 }
 
-                array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
+                if ($key % 2 == 0)
+                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_ASC, $tempArray);
+                else
+                    array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
+                // $this->debug($tempArray);
+                // die;
 
-                $key = 0;
                 $j = 0;
                 $num = 0;
 
@@ -132,11 +135,12 @@ class Jadwal extends MY_Controller
             }
             // $this->debug($arrayHari);
             // die;
-        }
-        $this->debug($arrayHari);
-        die;
 
-        // $groupedDayArray = array();
+        }
+        // $this->debug($arrayHari);
+        // die;
+
+        $groupedDayArray = array();
 
         foreach ($arrayHari as $ary) {
             foreach ($ary as $idx => $ar) {
