@@ -88,7 +88,7 @@
                                             foreach ($labelDay as $day) {
                                                 foreach ($jadwal as $jdl) {
                                                     if ($jdl['hari'] == $day && $ja == $jdl['jp_urutan']) {
-                                                        echo '<td>' . $jdl["mapel_nama"] . '</td>';
+                                                        echo '<td>' . $jdl["mapel_nama"] . '<br>' . $jdl["guru_nama"] . '</td>';
                                                     }
                                                 }
 
