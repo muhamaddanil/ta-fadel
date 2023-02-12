@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="page-header-title">
-                        <h3 class="m-b-10" style="font-weight:bold">Halaman Manajemen Kelas</h3>
+                        <h3 class="m-b-10" style="font-weight:bold">Halaman Manajemen Kelas <?= ucwords(strtolower($jadwal[0]['kelas_nama'])) ?></h3>
                         <p>Berikut merupakan halaman untuk mengelola kelas dan mata pelajaran yang dimilikinya </p>
                     </div>
                 </div>
