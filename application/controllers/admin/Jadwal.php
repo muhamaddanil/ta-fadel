@@ -100,12 +100,12 @@ class Jadwal extends MY_Controller
                     $tempArray[$index]['conflict_value'] = round($constValue / $tempArray[$index]['cg_value'], 4);
                 }
 
-                // if ($key % 3 == 0)
-                // array_multisort(array_column($tempArray, 'cg_value'), SORT_ASC, $tempArray);
-                // elseif ($key % 2 == 0)
-                array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
-                // else
-                //     array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
+                if ($key % 3 == 0)
+                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_ASC, $tempArray);
+                elseif ($key % 2 == 0)
+                    array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
+                else
+                    array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
                 // $this->debug($tempArray);
                 // $this->debug(array_count_values(array_column($tempArray, 'mapel_jp')));
                 // die;
@@ -114,7 +114,7 @@ class Jadwal extends MY_Controller
                 $j = 0;
                 $num = 0;
                 while (count($tempArray) > 0) {
-                    if ($mx > 10) {
+                    if ($mx > 15) {
                         $mx = 0;
                         $num = 0;
                         $j = 0;

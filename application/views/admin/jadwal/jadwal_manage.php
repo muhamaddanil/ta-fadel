@@ -69,6 +69,7 @@
                     <script>
                         $(document).ready(function() {
                             $('#simpleTable').DataTable({
+                                "pageLength": 50
                                 // "lengthChange": false,   
                                 // "searching" : false,
                             });
