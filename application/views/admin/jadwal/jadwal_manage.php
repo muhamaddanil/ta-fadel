@@ -26,7 +26,9 @@
                 <label class="w-100 alert alert-<?= explode('|', $ck)[1] ?>" for=""><b><?= explode('|', $ck)[0] ?></b></label>
             </div>
         </div>
-    <?php }; ?>
+    <?php };
+    unset($_SESSION['msg']);
+    ?>
 
     <div class="row justify-content-center">
         <div class="col-12">

@@ -47,19 +47,19 @@ Class Mapel extends MY_Controller{
             
             $id = $this->M_pelajaran->insert('tbl_mapel', $dataInsert);
 
-            $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $id));
+            // $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $id));
 
-            if($post['id_guru'] != ''){
-                $dataGuru = array();
-                foreach(explode(',', substr($post['id_guru'], 0, -1)) as $g){
-                    array_push($dataGuru, array(
-                        'id_mapel' => $id, 
-                        'id_guru' => $g
-                    ));
-                }  
+            // if($post['id_guru'] != ''){
+            //     $dataGuru = array();
+            //     foreach(explode(',', substr($post['id_guru'], 0, -1)) as $g){
+            //         array_push($dataGuru, array(
+            //             'id_mapel' => $id, 
+            //             'id_guru' => $g
+            //         ));
+            //     }  
                 
-                $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
-            }
+            //     $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
+            // }
 
             $this->session->set_flashdata('msg', 'Berhasil Menambahakan Mata Pelajaran|success'); redirect('admin/mapel');
 
@@ -89,19 +89,19 @@ Class Mapel extends MY_Controller{
                 'mapel_jp' => $post['jamMapel'],
             ); $this->M_pelajaran->update('tbl_mapel', $dataUpdate, array('id' => $post['id']));
 
-            $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $post['id']));
+            // $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $post['id']));
 
-            if($post['id_guru'] != ''){
-                $dataGuru = array();
-                foreach(explode(',', substr($post['id_guru'], 0, -1)) as $g){
-                    array_push($dataGuru, array(
-                        'id_mapel' => $post['id'], 
-                        'id_guru' => $g
-                    ));
-                }  
+            // if($post['id_guru'] != ''){
+            //     $dataGuru = array();
+            //     foreach(explode(',', substr($post['id_guru'], 0, -1)) as $g){
+            //         array_push($dataGuru, array(
+            //             'id_mapel' => $post['id'], 
+            //             'id_guru' => $g
+            //         ));
+            //     }  
                 
-                $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
-            }
+            //     $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
+            // }
 
             $this->session->set_flashdata('msg', 'Berhasil Menyunting Mata Pelajaran|success'); redirect('admin/mapel');
 
