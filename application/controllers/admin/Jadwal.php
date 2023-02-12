@@ -101,11 +101,11 @@ class Jadwal extends MY_Controller
                 }
 
                 if ($key % 3 == 0)
-                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_ASC, $tempArray);
+                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_DESC, $tempArray);
                 elseif ($key % 2 == 0)
                     array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
                 else
-                    array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
+                    array_multisort(array_column($tempArray, 'guru_nama'), SORT_DESC, $tempArray);
                 // $this->debug($tempArray);
                 // $this->debug(array_count_values(array_column($tempArray, 'mapel_jp')));
                 // die;
