@@ -60,6 +60,17 @@ class Jadwal extends MY_Controller
         $this->template->load('template_admin', 'admin/jadwal/lihat_jadwal', $data);
     }
 
+    function shuffle_assoc($list)
+    {
+        if (!is_array($list)) return $list;
+        $keys = array_keys($list);
+        shuffle($keys);
+        $random = array();
+        foreach ($keys as $key)
+            $random[$key] = $list[$key];
+        return $random;
+    }
+
     public function generate_jadwal()
     {
         ini_set('max_execution_time', 0);
@@ -67,7 +78,7 @@ class Jadwal extends MY_Controller
 
         $this->M_pelajaran->delete_jadwal();
 
-        $arrayKelas = $this->M_kelas->get_all_kelas('10')->result_array();
+        $arrayKelas = $this->M_kelas->get_all_kelas('')->result_array();
         // $arrayKelas = $this->M_kelas->get_kelas_byid('40')->result_array();
         // $arrayKodeGuru = $this->convert_1dimension_array($this->M_guru->get_all_kode()->result_array(), 'guru_kode');
         $constValue = 0.45;
@@ -79,7 +90,6 @@ class Jadwal extends MY_Controller
         foreach ($arrayKelas as $idKelas) {
             $arrayMapel[$idKelas['kelas_alias']] = $this->M_pelajaran->count_mapel_kelas($idKelas['id'])->result_array();
 
-
             $tempArray = $arrayMapel[$idKelas['kelas_alias']];
 
             if (!empty($tempArray)) {
@@ -90,21 +100,30 @@ class Jadwal extends MY_Controller
                     $tempArray[$index]['conflict_value'] = round($constValue / $tempArray[$index]['cg_value'], 4);
                 }
 
-                if ($key % 3 == 0)
-                    array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
-                elseif ($key % 2 == 0)
-                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_ASC, $tempArray);
-                else
-                    array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
+                // if ($key % 3 == 0)
+                // array_multisort(array_column($tempArray, 'cg_value'), SORT_ASC, $tempArray);
+                // elseif ($key % 2 == 0)
+                array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
+                // else
+                //     array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
                 // $this->debug($tempArray);
+                // $this->debug(array_count_values(array_column($tempArray, 'mapel_jp')));
                 // die;
 
+                $mx = 0;
                 $j = 0;
                 $num = 0;
-
                 while (count($tempArray) > 0) {
-                    $lastIndex = 0;
+                    if ($mx > 10) {
+                        $mx = 0;
+                        $num = 0;
+                        $j = 0;
+                        $arrayHari[$idKelas['kelas_nama'] . $key] = [];
+                        $tempArray = $arrayMapel[$idKelas['kelas_alias']];
+                        $tempArray = $this->shuffle_assoc($tempArray);
+                    }
 
+                    $lastIndex = 0;
                     foreach ($tempArray as $index => $value) {
                         $skip = 0;
                         $oldnum = $num;
@@ -118,7 +137,7 @@ class Jadwal extends MY_Controller
 
                         if ($num <= 9 && $skip != 1) {
 
-                            $arrayHari[$idKelas['kelas_nama']][$j][] = $value;
+                            $arrayHari[$idKelas['kelas_nama'] . $key][$j][] = $value;
                             unset($tempArray[$index]);
 
                             if ($num == 8 || $num == 9) {
@@ -131,67 +150,33 @@ class Jadwal extends MY_Controller
 
                         $lastIndex = $value['mapel_jp'];
                     }
+                    $mx++;
                 }
+
 
                 $key++;
             }
             // $this->debug($arrayHari);
             // die;
-
         }
         // $this->debug($arrayHari);
         // die;
 
-        $groupedDayArray = array();
-
         foreach ($arrayHari as $ary) {
             foreach ($ary as $idx => $ar) {
                 foreach ($ar as $r) {
-                    $groupedDayArray[$labelDay[$idx]][] = $r;
-
-                    $data_input = array(
-                        'id_ajar' => $r['id_ajar'],
-                        'id_kelas' => $r['id_kelas'],
-                        'hari' => $labelDay[$idx]
-                    );
-
-                    $this->M_pelajaran->insert('tbl_jadwal', $data_input, false);
+                    if ($idx != 5) {
+                        $data_input = array(
+                            'id_ajar' => $r['id_ajar'],
+                            'id_kelas' => $r['id_kelas'],
+                            'hari' => $labelDay[$idx]
+                        );
+                        $this->M_pelajaran->insert('tbl_jadwal', $data_input, false);
+                    }
                 }
             }
         }
 
-        // foreach ($arrayHari as $ary) {
-        //     foreach ($ary as $idx => $ar) {
-        //         foreach ($ar as $r) {
-        //             $groupedDayArray[$labelDay[$idx]][] = $r;
-        //         }
-        //     }
-        // }
-
-        // foreach ($arrayKodeGuru as $kdGu) {
-        //     foreach ($groupedDayArray as $keys => $gr) {
-        //         $arrayCount[$keys][$kdGu] = 0;
-        //         foreach ($gr as $idx => $g) {
-        //             if ($kdGu == $g['guru_kode']) {
-        //                 $arrayCount[$keys][$kdGu] = $arrayCount[$keys][$kdGu] + $g['mapel_jp'];
-
-        //                 if ($arrayCount[$keys][$kdGu] > 9) {
-        //                     $switchArray[$keys][] = $idx;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // $groupedDayArray = $this->get_jp_guru($groupedDayArray);
-        // $groupedDayArray = $this->sort_by_guru($groupedDayArray);
-
-        // $this->debug($groupedDayArray);
-        // die;
-
-        // $data['jadwal'] = $groupedDayArray;
-        // $data['list'] = $this->M_kelas->get_all_kelas("")->result_array();
-        // $this->template->load('template_admin', 'admin/jadwal/lihat_jadwal', $data);
         $this->session->set_flashdata('msg', 'Berhasil Mengenerate Jadwal Baru|success');
         redirect('admin/jadwal');
     }
