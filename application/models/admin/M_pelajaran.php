@@ -126,12 +126,14 @@ class M_pelajaran extends MY_Model
     {
         // Select for from later
         $this->db->select('
-                count(id) as total_kelas,
-                id_ajar
+                count(ajr.id) as total_kelas,
+                ajr.id_ajar
             ');
 
         $this->db->group_by('id_ajar');
-        $this->db->from($this->fourth);
+        // $this->db->group_by('id_ajar');
+        $this->db->from($this->fourth . ' as ajr');
+        $this->db->join($this->fifth . ' as k', 'ajr.id_kelas = k.id');
 
         $temp_table = $this->db->get_compiled_select();
 
