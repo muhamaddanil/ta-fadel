@@ -60,6 +60,50 @@ class Jadwal extends MY_Controller
         $this->template->load('template_admin', 'admin/jadwal/lihat_jadwal', $data);
     }
 
+    public function print_jadwal()
+    {
+        $data['list'] = $this->M_kelas->get_all_kelas("")->result_array();
+        $jadwal = $this->M_pelajaran->get_jadwal_kelas($this->uri->segment(4))->result_array();
+        $labelDay = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
+
+        $data['jadwal'] = [];
+        foreach ($labelDay as $ld) {
+            $urutan = 2;
+            $temp_jadwal = [];
+            foreach ($jadwal as $key) {
+                for ($i = 0; $i < $key['mapel_jp']; $i++) {
+                    if ($ld == $key['hari']) {
+                        $temp_jadwal[] = array(
+                            'kelas_nama' => $key['kelas_nama'],
+                            'guru_nama' => $key['guru_nama'],
+                            'mapel_nama' => $key['mapel_nama'],
+                            'mapel_jp' => $key['mapel_jp'],
+                            'hari' => $key['hari'],
+                            'jp_urutan' => $urutan != 5 ? $urutan : $urutan++
+                        );
+                        // if($urutan)
+                        $urutan++;
+                    }
+                }
+            }
+            // $tes = ;
+            for ($j = count($temp_jadwal) + 3; $j <= 11; $j++) {
+                array_push($temp_jadwal, array(
+                    'kelas_nama' => '',
+                    'guru_nama' => '',
+                    'mapel_nama' => '',
+                    'mapel_jp' => '',
+                    'hari' => $ld,
+                    'jp_urutan' => $j
+                ));
+            }
+            $data['jadwal'] = array_merge($data['jadwal'], $temp_jadwal);
+        }
+        // $this->debug($data['jadwal']);
+        // die;
+        $this->load->view('admin/jadwal/jadwal_print', $data);
+    }
+
     function shuffle_assoc($list)
     {
         if (!is_array($list)) return $list;
@@ -75,15 +119,12 @@ class Jadwal extends MY_Controller
     {
         ini_set('max_execution_time', 0);
         ini_set('memory_limit', '2048M');
+        $start_time_2 = microtime(true);
+        $this->M_pelajaran->delete('tbl_jadwal', array('angkatan' => $this->uri->segment(4)));
 
-        $this->M_pelajaran->delete_jadwal();
-
-        $arrayKelas = $this->M_kelas->get_all_kelas('')->result_array();
-        // $arrayKelas = $this->M_kelas->get_kelas_byid('40')->result_array();
-        // $arrayKodeGuru = $this->convert_1dimension_array($this->M_guru->get_all_kode()->result_array(), 'guru_kode');
+        $arrayKelas = $this->M_kelas->get_all_kelas($this->uri->segment(4))->result_array();
         $constValue = 0.45;
-        // $this->debug($arrayKelas);
-        // die;
+
         $labelDay = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
         $key = 0;
@@ -167,6 +208,7 @@ class Jadwal extends MY_Controller
                 foreach ($ar as $r) {
                     if ($idx != 5) {
                         $data_input = array(
+                            'angkatan' => $this->uri->segment(4),
                             'id_ajar' => $r['id_ajar'],
                             'id_kelas' => $r['id_kelas'],
                             'hari' => $labelDay[$idx]
@@ -176,8 +218,10 @@ class Jadwal extends MY_Controller
                 }
             }
         }
+        $end_time_2 = microtime(true);
+        $waktu_eksekusi = round(($end_time_2 - $start_time_2), 3);
 
-        $this->session->set_flashdata('msg', 'Berhasil Mengenerate Jadwal Baru|success');
+        $this->session->set_flashdata('msg', 'Berhasil Mengenerate Jadwal Kelas ' . $this->uri->segment(4) . ' Dengan Estimasi Waktu ' . $waktu_eksekusi . 'ms|success');
         redirect('admin/jadwal');
     }
 

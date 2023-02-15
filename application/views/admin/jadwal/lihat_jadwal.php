@@ -14,10 +14,11 @@
     </div>
 
     <div class="button-place mb-3">
-        <!-- <a href="<?= base_url('admin/kelas/kelas_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah Kelas</a> -->
+
 
         <!-- <a href="" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Muat Ulang Halaman</a> -->
         <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="btn btn-unique"><i class="fas fa-arrow-left"></i> Kembali Ke Halaman Sebelumnya</a>
+        <a href="<?= base_url('admin/jadwal/print_jadwal/' . $this->uri->segment(4)) ?>" class="btn btn-unique"><i class="fas fa-print"></i> Cetak Jadwal</a>
     </div>
 
     <?php $ck = '';
