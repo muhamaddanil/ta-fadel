@@ -15,10 +15,11 @@
 
     <div class="button-place mb-3">
         <!-- <a href="<?= base_url('admin/kelas/kelas_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah Kelas</a> -->
-
-        <a href="<?= base_url('admin/jadwal/generate_jadwal/10') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 10</a>
-        <a href="<?= base_url('admin/jadwal/generate_jadwal/11') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 11</a>
-        <a href="<?= base_url('admin/jadwal/generate_jadwal/12') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 12</a>
+        <?php if ($this->session->userdata('user_level') == 4) { ?>
+            <a href="<?= base_url('admin/jadwal/generate_jadwal/10') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 10</a>
+            <a href="<?= base_url('admin/jadwal/generate_jadwal/11') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 11</a>
+            <a href="<?= base_url('admin/jadwal/generate_jadwal/12') ?>" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Generate Jadwal Kelas 12</a>
+        <?php } ?>
     </div>
 
     <?php $ck = '';

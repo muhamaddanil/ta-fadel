@@ -30,9 +30,10 @@ Class Auth extends MY_Controller{
                         $this->session->set_userdata($sess_data);
                         if($sess_data['user_level'] == 1){
                             redirect('superadmin/dashboard');
-                        } else if($sess_data['user_level'] == 4) {
+                        } else if($sess_data['user_level'] == 4 or $sess_data['user_level'] == 5) {
                             redirect('admin/dashboard');
                         }
+                        
                   } else {
                     $this->session->set_flashdata('mark', 'fail');
                     redirect('auth');
