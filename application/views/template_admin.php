@@ -189,8 +189,8 @@
     <aside class="main-sidebar elevation-4" style="background-color:#1277B9;">
       <!-- Brand Logo -->
       <a href="<?= site_url('admin/dashboard') ?>" class="brand-link text-center">
-        <h5 style="color: #000000">Sample Logo Here</h5>
-        <!-- <img src="<?= base_url() ?>assets/img/long-logo.png" alt="" width="120px;"> -->
+        <!-- <h5 style="color: #000000">Sample Logo Here</h5> -->
+        <img src="<?= base_url() ?>assets/img/long-logo.png" alt="" width="120px;">
         <!-- <div class="brand-text font-weight-light px-4">
         
       </div> -->
