@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="" class="col-3">Pilih Mapel</label>
                         <div class="col-5">
-                            <select class="form-control form-control-sm" id="mapelOpt">
+                            <select class="form-control form-control-sm select2" id="mapelOpt">
                                 <?php foreach ($mapel as $mp) { ?>
                                     <option value="<?= $mp['id'] ?>"><?= $mp['guru_nama'] . ' | ' . $mp['mapel_nama'] . ' | ' . $mp['mapel_kode'] . $mp['guru_kode'] ?></option>
                                 <?php }; ?>
@@ -121,8 +121,11 @@
     <?= form_close() ?>
 
 </div>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+    $(".select2").select2();
     // Add guru 
     let arrayNamaMapel = [];
     let arrayIdAjar = [];

@@ -83,7 +83,7 @@
         <a href="javascript:window.print();">Print</a>
     </div>
     <div class="page-header">
-        <h3><?= strtoupper('Jadwal Kelas ' . $jadwal[0]['kelas_nama']) ?></h3>
+        <h3><?= strtoupper('Jadwal Kelas ' . $jadwal[0]['kelas_level'] . ' ' . $jadwal[0]['kelas_nama']) ?></h3>
     </div>
 
 

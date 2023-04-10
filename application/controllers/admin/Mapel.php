@@ -1,5 +1,6 @@
 <?php
-Class Mapel extends MY_Controller{
+class Mapel extends MY_Controller
+{
 
     public function __construct()
     {
@@ -12,7 +13,7 @@ Class Mapel extends MY_Controller{
         // Taking from DB
         $data['list'] = $this->M_pelajaran->get_all_table_mapel()->result_array();
 
-        $this->template->load('template_admin','admin/mapel/mapel_manage', $data);
+        $this->template->load('template_admin', 'admin/mapel/mapel_manage', $data);
     }
 
     public function mapel_add()
@@ -22,29 +23,32 @@ Class Mapel extends MY_Controller{
             'mapel_kode' => '',
             'mapel_nama' => '',
             'mapel_jp' => 2,
+            'mapel_jenis' => '',
             'date_regist' => '',
             'total' => 0,
         );
 
         $data['action'] = 'admin/mapel/mapel_insert';
-        $this->template->load('template_admin','admin/mapel/mapel_form', $data);
+        $this->template->load('template_admin', 'admin/mapel/mapel_form', $data);
     }
 
     public function mapel_insert()
     {
-        $post = $this->input->post(); $validate = $post;
-        unset($validate['id_guru']); 
+        $post = $this->input->post();
+        $validate = $post;
+        unset($validate['id_guru']);
 
 
         $this->form_rules_required($validate);
-        if($this->form_validation->run() != False){
-            
+        if ($this->form_validation->run() != False) {
+
             $dataInsert = array(
                 'mapel_kode' => $post['kodeMapel'],
                 'mapel_nama' => $post['namaMapel'],
-                'mapel_jp' => $post['jamMapel'],
-            ); 
-            
+                'mapel_jenis' => $post['mapelJenis'],
+                'mapel_jp' => $post['mapelJp'],
+            );
+
             $id = $this->M_pelajaran->insert('tbl_mapel', $dataInsert);
 
             // $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $id));
@@ -57,13 +61,16 @@ Class Mapel extends MY_Controller{
             //             'id_guru' => $g
             //         ));
             //     }  
-                
+
             //     $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
             // }
 
-            $this->session->set_flashdata('msg', 'Berhasil Menambahakan Mata Pelajaran|success'); redirect('admin/mapel');
-
-        } else {$this->session->set_flashdata('msg', 'Silahkan Mengisi Inputan Secara Keseluruhan|danger'); redirect($_SERVER['HTTP_REFERER']);}
+            $this->session->set_flashdata('msg', 'Berhasil Menambahakan Mata Pelajaran|success');
+            redirect('admin/mapel');
+        } else {
+            $this->session->set_flashdata('msg', 'Silahkan Mengisi Inputan Secara Keseluruhan|danger');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
     public function mapel_edit($id)
@@ -72,22 +79,25 @@ Class Mapel extends MY_Controller{
         $data['gurumapel'] = $this->M_pelajaran->get_guru_by_mapel($id)->result_array();
 
         $data['action'] = 'admin/mapel/mapel_update';
-        $this->template->load('template_admin','admin/mapel/mapel_form', $data);
+        $this->template->load('template_admin', 'admin/mapel/mapel_form', $data);
     }
 
     public function mapel_update()
     {
-        $post = $this->input->post(); $validate = $post;
-        unset($validate['id_guru']); 
+        $post = $this->input->post();
+        $validate = $post;
+        unset($validate['id_guru']);
 
         $this->form_rules_required($validate);
-        if($this->form_validation->run() != False){
-            
+        if ($this->form_validation->run() != False) {
+
             $dataUpdate = array(
                 'mapel_kode' => $post['kodeMapel'],
                 'mapel_nama' => $post['namaMapel'],
-                'mapel_jp' => $post['jamMapel'],
-            ); $this->M_pelajaran->update('tbl_mapel', $dataUpdate, array('id' => $post['id']));
+                'mapel_jenis' => $post['mapelJenis'],
+                'mapel_jp' => $post['mapelJp'],
+            );
+            $this->M_pelajaran->update('tbl_mapel', $dataUpdate, array('id' => $post['id']));
 
             // $this->M_pelajaran->delete('tbl_ajar', array('id_mapel' => $post['id']));
 
@@ -99,21 +109,24 @@ Class Mapel extends MY_Controller{
             //             'id_guru' => $g
             //         ));
             //     }  
-                
+
             //     $this->M_pelajaran->insert('tbl_ajar', $dataGuru, true);
             // }
 
-            $this->session->set_flashdata('msg', 'Berhasil Menyunting Mata Pelajaran|success'); redirect('admin/mapel');
-
-        } else {$this->session->set_flashdata('msg', 'Silahkan Mengisi Inputan Secara Keseluruhan|danger'); redirect($_SERVER['HTTP_REFERER']);}
+            $this->session->set_flashdata('msg', 'Berhasil Menyunting Mata Pelajaran|success');
+            redirect('admin/mapel');
+        } else {
+            $this->session->set_flashdata('msg', 'Silahkan Mengisi Inputan Secara Keseluruhan|danger');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
     public function mapel_delete()
     {
         $post = $this->input->post();
-        
-        $this->M_pelajaran->delete('tbl_mapel', array('id' => $post['id']));
-        $this->session->set_flashdata('msg', 'Berhasil Menghapus Mata Pelajaran|success'); redirect ('admin/mapel');
-    }
 
+        $this->M_pelajaran->delete('tbl_mapel', array('id' => $post['id']));
+        $this->session->set_flashdata('msg', 'Berhasil Menghapus Mata Pelajaran|success');
+        redirect('admin/mapel');
+    }
 }

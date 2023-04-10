@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 23 Feb 2023 pada 07.07
+-- Waktu pembuatan: 10 Apr 2023 pada 15.35
 -- Versi server: 5.7.34
 -- Versi PHP: 7.2.34
 
@@ -706,7 +706,7 @@ CREATE TABLE `tbl_guru` (
   `guru_kode` varchar(50) NOT NULL,
   `guru_nip` varchar(255) NOT NULL,
   `guru_nama` varchar(100) NOT NULL,
-  `guru_jam_ajar` varchar(5) NOT NULL
+  `guru_jam_ajar` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -714,87 +714,87 @@ CREATE TABLE `tbl_guru` (
 --
 
 INSERT INTO `tbl_guru` (`id`, `guru_kode`, `guru_nip`, `guru_nama`, `guru_jam_ajar`) VALUES
-(1, 'G01', '', 'Sulyani Sukarno Mardan, S.PdI', '4'),
-(2, 'G02', '', 'Nurlaela, S.Pd, M.PdI', '5'),
-(3, 'G03', '', 'Safiudin, S.PdI', '6'),
-(4, 'G04', '', 'Syamsinar Kadir, S.Pd', '12'),
-(5, 'G05', '', 'Yuni Rozalia, S.Pd', '3'),
-(6, 'G06', '', 'Syahrir, S.Pd', '6'),
-(7, 'G07', '', 'Vini Elfi Yunita, S.Pd', '3'),
-(8, 'G08', '', 'Ristawati, S.Pd', '6'),
-(9, 'G09', '', 'Fajarudin Nor Syarif, S.Pd', '3'),
-(10, 'G10', '', 'Siti Arabiah, S. Pd', '4'),
-(11, 'G11', '', 'Sari Mulyawarni, S.Pd', '3'),
-(12, 'G12', '', 'Misrawati, S.Pd', '3'),
-(13, 'G13', '', 'Harsa, SP, MP', '9'),
-(14, 'G14', '', 'Samsadar, S.Pd', '4'),
-(15, 'G16', '', 'Firda Ariyanti, S.Pd, M.Pd', '4'),
-(16, 'G17', '', 'Hasmira, S.Pd', '4'),
-(17, 'G18', '', 'Aswira Bahidin, S.Pd, M.Pd', '11'),
-(18, 'G19', '', 'Drs. Jufri', '0'),
-(19, 'G20', '', 'Abd. Salam, S.Pd', '0'),
-(20, 'G21', '', 'Dra. Nurbaya', '0'),
-(21, 'G22', '', 'Sumarni Sirait, S.Pd, M.Pd', '0'),
-(22, 'G23', '', 'Drs. H. Abd. Asis', '0'),
+(1, 'G01', '-', 'Sulyani Sukarno Mardan, S.PdI', '0'),
+(2, 'G02', '-', 'Nurlaela, S.Pd, M.PdI', '0'),
+(3, 'G03', '-', 'Safiudin, S.PdI', '0'),
+(4, 'G04', '19690926 200701 2 019', 'Syamsinar Kadir, S.Pd', '0'),
+(5, 'G05', '-', 'Yuni Rozalia, S.Pd', '0'),
+(6, 'G06', '19681231 199803 1 058', 'Syahrir, S.Pd', '0'),
+(7, 'G07', '-', 'Vini Elfi Yunita, S.Pd', '0'),
+(8, 'G08', '-', 'Ristawati, S.Pd', '0'),
+(9, 'G09', '-', 'Fajarudin Nor Syarif, S.Pd', '0'),
+(10, 'G10', '-', 'Siti Arabiah, S. Pd', '0'),
+(11, 'G11', '-', 'Sari Mulyawarni, S.Pd', '0'),
+(12, 'G12', '-', 'Misrawati, S.Pd', '0'),
+(13, 'G13', '19681231 200604 1 111', 'Harsa, SP, MP', '0'),
+(14, 'G14', '-', 'Samsadar, S.Pd', '0'),
+(15, 'G16', '-', 'Firda Ariyanti, S.Pd, M.Pd', '0'),
+(16, 'G17', '19750304 200604 2 005', 'Hasmira, S.Pd', '0'),
+(17, 'G18', '-', 'Aswira Bahidin, S.Pd, M.Pd', '0'),
+(18, 'G19', '19671231 199412 1 033', 'Drs. Jufri', '0'),
+(19, 'G20', '19701009 200212 1 006', 'Abd. Salam, S.Pd', '0'),
+(20, 'G21', '19670217 199412 2 002', 'Dra. Nurbaya', '0'),
+(21, 'G22', '19780909 201001 2 013', 'Sumarni Sirait, S.Pd, M.Pd', '0'),
+(22, 'G23', '19661231 199512 1 027', 'Drs. H. Abd. Asis', '0'),
 (23, 'G24', '', 'Rahmiati Lasantu, S.Pd', '0'),
 (24, 'G26', '', 'Kalina, S.Pd', '0'),
-(25, 'G27', '', 'Muh. Rijali, S.Pd', '0'),
-(26, 'G28', '', 'Nani Usman, S.Pd', '0'),
+(25, 'G27', '19700723 200502 1 002', 'Muh. Rijali, S.Pd', '0'),
+(26, 'G28', '19810930 201407 2 001', 'Nani Usman, S.Pd', '0'),
 (27, 'G30', '', 'Kartina, S.Pd', '0'),
 (28, 'G31', '', 'Hasnawati, S.Pd', '0'),
 (29, 'G32', '', 'Waode Aliyati, A.Md Com', '0'),
 (30, 'G33', '', 'Satrio Pangestu', '0'),
-(31, 'G34', '', 'Junizar. S.Pd', '0'),
-(32, 'G35', '', 'Mursalin, S.Pd, M.Pd', '0'),
+(31, 'G34', '19670622 199601 1 002', 'Junizar. S.Pd', '0'),
+(32, 'G35', '19840723 201001 1 017', 'Mursalin, S.Pd, M.Pd', '0'),
 (33, 'G36', '', 'Misna, S.Pd', '0'),
-(34, 'G37', '', 'Drs. Muh. Basri, M.Pd', '0'),
-(35, 'G38', '', 'Dra. Rahmawati, M.Pd', '0'),
-(36, 'G39', '', 'Dra. Hj. Asni, M.Si', '0'),
-(37, 'G40', '', 'Dra. Hj. St Aisyah Dasir, M.Pd', '0'),
+(34, 'G37', '19660120 199403 1 012', 'Drs. Muh. Basri, M.Pd', '0'),
+(35, 'G38', '19680328 199402 2 001', 'Dra. Rahmawati, M.Pd', '0'),
+(36, 'G39', '19611006 198803 2 004', 'Dra. Hj. Asni, M.Si', '0'),
+(37, 'G40', '19650516 199101 2 002', 'Dra. Hj. St Aisyah Dasir, M.Pd', '0'),
 (38, 'G41', '', 'La Sumpu Pustapa, S.Si', '0'),
-(41, 'G42', '-', 'La Haluma, S.Ag', '0'),
+(41, 'G42', '19740725 200801 1 012', 'La Haluma, S.Ag', '0'),
 (42, 'G43', '-', 'St. Nur Ida, S.Ag', '0'),
-(43, 'G44', '-', 'Dra. Nurhaeri', '0'),
-(44, 'G45', '-', 'Hamsiah Saudin, S.Pd', '0'),
-(45, 'G46', '-', 'Munaria, S.Pd', '0'),
+(43, 'G44', '19631231 198603 2 177', 'Dra. Nurhaeri', '0'),
+(44, 'G45', '19700818 199503 2 003', 'Hamsiah Saudin, S.Pd', '0'),
+(45, 'G46', '19770519 200604 2 012', 'Munaria, S.Pd', '0'),
 (46, 'G47', '-', 'Wa Ode Dina, S.Pd', '0'),
 (47, 'G48', '-', 'Firda Ariyanti, S.Pd, M.Pd', '0'),
 (48, 'G49', '-', 'St. Nurmalia, S.Pd', '0'),
-(49, 'G50', '-', 'Murniati, S.Pd', '0'),
+(49, 'G50', '19820413 200903 2 005', 'Murniati, S.Pd', '0'),
 (50, 'G51', '-', 'Ahmad Risal. S.Kom', '0'),
-(51, 'G52', '-', 'Agus Salim, S.Pd', '0'),
-(52, 'G35', '-', 'Wa Ode Nur Arfiani, S.Pd', '0'),
-(53, 'G54', '-', 'Drs. Abdurrahman', '0'),
+(51, 'G52', '19900812 201903 1 007', 'Agus Salim, S.Pd', '0'),
+(52, 'G35', '19910103 201903 2 014', 'Wa Ode Nur Arfiani, S.Pd', '0'),
+(53, 'G54', '19671231 199412 1 003', 'Drs. Abdurrahman', '0'),
 (54, 'G55', '-', 'Muh. Masykur. S, S.Kom', '0'),
 (55, 'G56', '-', 'Febriadi Usnawi, Si.Kom', '0'),
-(56, 'G57', '-', 'Lallo, S.Pd.', '0'),
-(57, 'G58', '-', 'Amiluddin, S.Pd', '0'),
+(56, 'G57', '19690503 199601 1 001', 'Lallo, S.Pd.', '0'),
+(57, 'G58', '19660405 199802 1 003', 'Amiluddin, S.Pd', '0'),
 (58, 'G59', '-', 'La Malino, S.Kom', '0'),
 (59, 'G60', '-', 'Muh. Ilham Nusi, S.Pd', '0'),
 (60, 'G61', '-', 'Lidya Rahayu Ningrum, S.Si', '0'),
-(61, 'G62', '-', 'Dewi Puspita Sari, S.Pd', '0'),
+(61, 'G62', '19840607 201101 2 017', 'Dewi Puspita Sari, S.Pd', '0'),
 (62, 'G63', '-', 'Alfin, S.Pd', '0'),
 (63, 'G64', '-', 'Muh. Wahyu Fadillah', '0'),
-(64, 'G65', '-', 'Norma, S.Ag', '0'),
-(65, 'G66', '-', 'Dra. Rosdiana', '0'),
-(66, 'G67', '-', 'Hj.Waode Zalmama, S.Pd', '0'),
-(67, 'G68', '-', 'Jamlia Jamaa, S.Pd', '0'),
-(68, 'G69', '-', 'St. Hasmah, S.Pd', '0'),
-(69, 'G70', '-', 'Sur Rasyid, S.Pd', '0'),
-(70, 'G71', '-', 'Elisabeth, S.Pd', '0'),
+(64, 'G65', '19751219 201001 2 003', 'Norma, S.Ag', '0'),
+(65, 'G66', '19690329 199512 2 007', 'Dra. Rosdiana', '0'),
+(66, 'G67', '19581231 198601 2 007', 'Hj.Waode Zalmama, S.Pd', '0'),
+(67, 'G68', '19750626 200903 2 001', 'Jamlia Jamaa, S.Pd', '0'),
+(68, 'G69', '19660911 198812 2 002', 'St. Hasmah, S.Pd', '0'),
+(69, 'G70', '19711201 200502 1 006', 'Sur Rasyid, S.Pd', '0'),
+(70, 'G71', '19791227 200801 2 013', 'Elisabeth, S.Pd', '0'),
 (71, 'G72', '-', 'Ervina, S.Pd, MM', '0'),
-(72, 'G73', '-', 'Dra. Dahlia Surahmawati', '0'),
-(73, 'G74', '-', 'Rahmawati Nusi, S.Pd, MA', '0'),
-(74, 'G75', '-', 'Jumadil A. S.Pd, M.Pd', '0'),
+(72, 'G73', '19640604 199303 2 001', 'Dra. Dahlia Surahmawati', '0'),
+(73, 'G74', '19840808 201001 2 027', 'Rahmawati Nusi, S.Pd, MA', '0'),
+(74, 'G75', '19680726 199601 1 001', 'Jumadil A. S.Pd, M.Pd', '0'),
 (75, 'G75', '-', 'Muh. Indra Faisal, ST', '0'),
-(76, 'G76', '-', 'Dra. Tasma, M.Pd', '0'),
-(77, 'G77', '-', 'Dra. Ummi, M.Pd', '0'),
+(76, 'G76', '19651231 199203 2 089', 'Dra. Tasma, M.Pd', '0'),
+(77, 'G77', '19661231 199312 2 007', 'Dra. Ummi, M.Pd', '0'),
 (78, 'G78', '-', 'Muhlis', '0'),
 (79, 'G79', '-', 'Muh. Akbar Al Ma\'ruf', '0'),
-(80, 'G80', '-', 'Mutasrim, S.Kom', '0'),
+(80, 'G80', '19770906 200903 1 001', 'Mutasrim, S.Kom', '0'),
 (81, 'G81', '-', 'Iswuri Handayani, M.Kom', '0'),
 (82, 'G82', '-', 'Akbar, S.ST', '0'),
-(83, 'G15', '-', 'Titin Mekuo, S.Pd', '0');
+(83, 'G15', '19800217 201001 2 001', 'Titin Mekuo, S.Pd', '0');
 
 -- --------------------------------------------------------
 
@@ -815,13 +815,13 @@ CREATE TABLE `tbl_hak_akses` (
 INSERT INTO `tbl_hak_akses` (`id_hak_akses`, `id_user_level`, `id_menu`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3),
 (16, 4, 18),
 (17, 1, 4),
 (18, 4, 17),
 (19, 4, 4),
 (21, 4, 1),
-(22, 5, 18);
+(22, 5, 18),
+(23, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -1449,7 +1449,7 @@ CREATE TABLE `tbl_mapel` (
   `id` int(11) NOT NULL,
   `mapel_kode` varchar(50) NOT NULL DEFAULT '-',
   `mapel_nama` varchar(100) NOT NULL,
-  `mapel_jp` int(11) NOT NULL,
+  `mapel_jp` int(11) DEFAULT NULL,
   `mapel_jenis` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1458,7 +1458,7 @@ CREATE TABLE `tbl_mapel` (
 --
 
 INSERT INTO `tbl_mapel` (`id`, `mapel_kode`, `mapel_nama`, `mapel_jp`, `mapel_jenis`) VALUES
-(2, 'M10', 'Fisika', 3, 'kejuruan'),
+(2, 'M10', 'Fisika', 3, 'Teknologi'),
 (3, 'M11', 'Sistem Komputer', 2, 'kejuruan'),
 (4, 'M12', 'Pemrograman Dasar', 3, 'kejuruan'),
 (5, 'M13', 'Dasar Desain Grafis', 3, 'kejuruan'),
@@ -1566,9 +1566,10 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `nama_pengguna`, `password`, `user_level`, `date_registration`, `picture_profile`) VALUES
-(1, 'superadmin', 'MFYS', '$2y$10$ab.PAnHmGnWS6aWMwjWMOeklI1ttbIz39TqmDHkYn5HT3iXmmYnn6', 1, '2021-10-31 06:14:31', 'b9f85df67f85fe05c3768a826ad20952.jpg'),
-(10, 'adminakademik', 'Akademik', '$2y$10$ab.PAnHmGnWS6aWMwjWMOeklI1ttbIz39TqmDHkYn5HT3iXmmYnn6', 4, '2021-11-03 05:24:16', '7fb9134919ff83cc2e1b2da4891e2aae.jpeg'),
-(11, 'guru', 'guru', '$2y$10$nvV.hUtTnAhS2IA8gtMuiOD6p5uIsYNAF7SQ8sQpvW6VTNMAzl3ua', 5, '2023-02-23 07:04:10', 'default.png');
+(1, 'admin', 'Admin Sistem', '$2y$10$U8dq1svKz2YawRXkDbdkzuM3hIAnKZ/IabIoyxXQKHnWJZmRF7pqi', 1, '2021-10-31 06:14:31', 'b9f85df67f85fe05c3768a826ad20952.jpg'),
+(10, 'adminakademik', 'Wakasek Kurikulum', '$2y$10$ab.PAnHmGnWS6aWMwjWMOeklI1ttbIz39TqmDHkYn5HT3iXmmYnn6', 4, '2021-11-03 05:24:16', '233b2e04becb2f137fdfed0703a512ee.jpeg'),
+(11, 'guru', 'guru', '$2y$10$nvV.hUtTnAhS2IA8gtMuiOD6p5uIsYNAF7SQ8sQpvW6VTNMAzl3ua', 5, '2023-02-23 07:04:10', 'default.png'),
+(12, 'G01', 'Sulyani Sukarno Mardan, S.PdI', '$2y$10$j3zweoLu1G0kq0fmlxYAOeXOVdJl/doCC0fFSbCVILMz0tfqIBn2e', 5, '2023-04-01 06:27:55', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -1588,7 +1589,7 @@ CREATE TABLE `tbl_user_level` (
 --
 
 INSERT INTO `tbl_user_level` (`id`, `nama`, `date_created`, `date_modificate`) VALUES
-(1, 'Super Admin', '2021-10-31 05:38:30', '2021-10-31 05:38:30'),
+(1, 'Admin Sistem', '2021-10-31 05:38:30', '2021-10-31 05:38:30'),
 (4, 'Admin Akademik', '2021-11-01 09:52:20', '2021-11-01 09:52:20'),
 (5, 'Guru', '2021-11-01 09:52:20', '2021-11-01 09:52:20');
 
@@ -1688,13 +1689,13 @@ ALTER TABLE `tbl_aktivitas`
 -- AUTO_INCREMENT untuk tabel `tbl_guru`
 --
 ALTER TABLE `tbl_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_hak_akses`
 --
 ALTER TABLE `tbl_hak_akses`
-  MODIFY `id_hak_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_hak_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_hari`
@@ -1736,7 +1737,7 @@ ALTER TABLE `tbl_menu`
 -- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_user_level`

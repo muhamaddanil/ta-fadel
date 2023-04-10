@@ -1,5 +1,6 @@
 <?php
-Class Auth extends MY_Controller{
+class Auth extends MY_Controller
+{
 
     public function __construct()
     {
@@ -15,39 +16,38 @@ Class Auth extends MY_Controller{
 
     public function authentication()
     {
-        if($post = $this->input->post()){
+        if ($post = $this->input->post()) {
             $this->form_rules_required($post);
 
-            $password = $this->input->post('pass',TRUE);
-            $hashPass = password_hash($password,PASSWORD_DEFAULT);
+            $password = $this->input->post('pass', TRUE);
+            $hashPass = password_hash($password, PASSWORD_DEFAULT);
             $test     = password_verify($password, $hashPass);
 
-            if($this->form_validation->run() == TRUE){
+            if ($this->form_validation->run() == TRUE) {
 
                 // var_dump($hashPass);
-                if($sess_data = $this->m_auth->validate($post['username'])){
-                  if(password_verify($password, $sess_data['password'])){
+                if ($sess_data = $this->m_auth->validate($post['username'])) {
+                    if (password_verify($password, $sess_data['password'])) {
                         $this->session->set_userdata($sess_data);
-                        if($sess_data['user_level'] == 1){
+                        if ($sess_data['user_level'] == 1) {
                             redirect('superadmin/dashboard');
-                        } else if($sess_data['user_level'] == 4 or $sess_data['user_level'] == 5) {
+                        } else if ($sess_data['user_level'] == 4 or $sess_data['user_level'] == 5) {
                             redirect('admin/dashboard');
                         }
-                        
-                  } else {
-                    $this->session->set_flashdata('mark', 'fail');
-                    redirect('auth');
-                  }
-                }
-                else {
+                    } else {
+                        $this->session->set_flashdata('mark', 'fail');
+                        redirect('auth');
+                    }
+                } else {
                     $this->session->set_flashdata('mark', 'fail');
                     redirect('auth');
                 }
             }
-        } 
+        }
     }
 
-    public function logout(){
+    public function logout()
+    {
         $this->session->sess_destroy();
         redirect('auth');
     }

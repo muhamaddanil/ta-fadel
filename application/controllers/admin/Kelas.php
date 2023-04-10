@@ -78,11 +78,9 @@ class Kelas extends MY_Controller
         $data['inkelas'] = $this->M_kelas->get_kelas_byid($id)->row_array();
         $data['regist_mapel'] = $this->M_pelajaran->get_kelas_mapel_byid($id)->result_array();
 
-        // $this->debug($data['regist_mapel']);
+        $data['mapel'] = $this->M_pelajaran->get_mapel_and_guru_where($data['inkelas']['kelas_jenis'])->result_array();
+        // $this->debug($data['mapel']);
         // die;
-
-        $data['mapel'] = $this->M_pelajaran->get_mapel_and_guru()->result_array();
-
         $data['action'] = 'admin/kelas/kelas_update';
         $this->template->load('template_admin', 'admin/kelas/kelas_form', $data);
     }

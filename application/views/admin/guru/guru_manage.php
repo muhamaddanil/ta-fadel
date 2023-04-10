@@ -14,8 +14,9 @@
     </div>
 
     <div class="button-place mb-3">
-        <a href="<?= base_url('admin/guru/guru_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah tenaga pengajar</a>
-
+        <?php if ($this->session->userdata('user_level') == 1) { ?>
+            <a href="<?= base_url('admin/guru/guru_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah tenaga pengajar</a>
+        <?php } ?>
         <a href="" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Muat Ulang Halaman</a>
     </div>
 
@@ -41,8 +42,10 @@
                                     <th>Kode</th>
                                     <th>NIP</th>
                                     <th>Nama Guru</th>
-                                    <th>Durasi Ajar</th>
-                                    <th>Aksi</th>
+                                    <!-- <th>Durasi Ajar</th> -->
+                                    <?php if ($this->session->userdata('user_level') == 1) { ?>
+                                        <th>Aksi</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,13 +56,15 @@
                                         <td><?= ucwords($l['guru_kode']) ?></td>
                                         <td><?= ucwords($l['guru_nip']) ?></td>
                                         <td><?= ucwords($l['guru_nama']) ?> </td>
-                                        <td><?= ucwords($l['guru_jam_ajar']) ?> Jam </td>
+                                        <!-- <td><?= ucwords($l['guru_jam_ajar']) ?> Jam </td> -->
                                         <!-- <td><?php //ucwords($l['total_guru'])
                                                     ?></td> -->
-                                        <td width="10%">
-                                            <a href="<?= base_url() ?>admin/guru/guru_edit/<?= $l['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                            <button value="<?= $l['id'] ?>" class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i>
-                                        </td>
+                                        <?php if ($this->session->userdata('user_level') == 1) { ?>
+                                            <td width="10%">
+                                                <a href="<?= base_url() ?>admin/guru/guru_edit/<?= $l['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                <button value="<?= $l['id'] ?>" class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                 <?php $no++;
                                 }; ?>

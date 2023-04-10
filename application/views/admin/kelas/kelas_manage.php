@@ -14,8 +14,9 @@
     </div>
 
     <div class="button-place mb-3">
-        <a href="<?= base_url('admin/kelas/kelas_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah Kelas</a>
-
+        <?php if ($this->session->userdata('user_level') == 1) { ?>
+            <a href="<?= base_url('admin/kelas/kelas_add') ?>" class="btn btn-unique"><i class="fas fa-plus"></i> Tambah Kelas</a>
+        <?php } ?>
         <a href="" class="btn btn-unique"><i class="fas fa-sync-alt"></i> Muat Ulang Halaman</a>
     </div>
 
@@ -41,7 +42,9 @@
                                     <th>Level Kelas</th>
                                     <th>Nama Kelas</th>
                                     <th>Jenis Kelas</th>
-                                    <th>Aksi</th>
+                                    <?php if ($this->session->userdata('user_level') == 1) { ?>
+                                        <th>Aksi</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +57,12 @@
                                         <td><?= ucwords($l['kelas_jenis']) ?></td>
                                         <!-- <td><?php //ucwords($l['total_guru'])
                                                     ?></td> -->
-                                        <td width="10%">
-                                            <a href="<?= base_url() ?>admin/kelas/kelas_edit/<?= $l['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                            <button value="<?= $l['id'] ?>" class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i>
-                                        </td>
+                                        <?php if ($this->session->userdata('user_level') == 1) { ?>
+                                            <td width="10%">
+                                                <a href="<?= base_url() ?>admin/kelas/kelas_edit/<?= $l['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                                <button value="<?= $l['id'] ?>" class="btn btn-sm btn-danger deleteBtn" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                 <?php $no++;
                                 }; ?>

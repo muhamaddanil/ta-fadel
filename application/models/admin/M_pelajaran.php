@@ -92,6 +92,23 @@ class M_pelajaran extends MY_Model
         return $this->db->get($this->third . ' as aj');
     }
 
+    public function get_mapel_and_guru_where($where)
+    {
+        $this->db->select('
+                gr.guru_nama, gr.guru_kode,
+                mp.mapel_nama, mp.mapel_kode,
+                aj.id
+            ');
+
+        $this->db->join($this->secondary . ' as gr', 'gr.id = aj.id_guru');
+        $this->db->join($this->primary . ' as mp', 'mp.id = aj.id_mapel');
+
+        $this->db->where('mp.mapel_jenis', $where);
+        $this->db->order_by('gr.id', 'ASC');
+
+        return $this->db->get($this->third . ' as aj');
+    }
+
     public function get_id_ajar_by_mapel_and_guru($mapel, $guru)
     {
         $this->db->select('*');
@@ -107,7 +124,7 @@ class M_pelajaran extends MY_Model
     {
         $this->db->select('
                 gr.guru_nama, gr.guru_kode,
-                mp.mapel_nama, mp.mapel_kode,
+                mp.mapel_nama, mp.mapel_kode, mp.mapel_jenis,
                 aj.id as id_ajar,
                 act.id
             ');

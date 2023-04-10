@@ -30,6 +30,7 @@ class Jadwal extends MY_Controller
                 for ($i = 0; $i < $key['mapel_jp']; $i++) {
                     if ($ld == $key['hari']) {
                         $temp_jadwal[] = array(
+                            'kelas_level' => $key['kelas_level'],
                             'kelas_nama' => $key['kelas_nama'],
                             'guru_nama' => $key['guru_nama'],
                             'mapel_nama' => $key['mapel_nama'],
@@ -45,6 +46,7 @@ class Jadwal extends MY_Controller
             // $tes = ;
             for ($j = count($temp_jadwal) + 3; $j <= 11; $j++) {
                 array_push($temp_jadwal, array(
+                    'kelas_level' => '',
                     'kelas_nama' => '',
                     'guru_nama' => '',
                     'mapel_nama' => '',
@@ -55,7 +57,7 @@ class Jadwal extends MY_Controller
             }
             $data['jadwal'] = array_merge($data['jadwal'], $temp_jadwal);
         }
-        // $this->debug($data['jadwal']);
+        // $this->debug($jadwal);
         // die;
         $this->template->load('template_admin', 'admin/jadwal/lihat_jadwal', $data);
     }
@@ -74,6 +76,7 @@ class Jadwal extends MY_Controller
                 for ($i = 0; $i < $key['mapel_jp']; $i++) {
                     if ($ld == $key['hari']) {
                         $temp_jadwal[] = array(
+                            'kelas_level' => $key['kelas_level'],
                             'kelas_nama' => $key['kelas_nama'],
                             'guru_nama' => $key['guru_nama'],
                             'mapel_nama' => $key['mapel_nama'],
@@ -89,6 +92,7 @@ class Jadwal extends MY_Controller
             // $tes = ;
             for ($j = count($temp_jadwal) + 3; $j <= 11; $j++) {
                 array_push($temp_jadwal, array(
+                    'kelas_level' => '',
                     'kelas_nama' => '',
                     'guru_nama' => '',
                     'mapel_nama' => '',
