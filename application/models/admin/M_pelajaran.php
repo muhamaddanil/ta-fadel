@@ -104,6 +104,7 @@ class M_pelajaran extends MY_Model
         $this->db->join($this->primary . ' as mp', 'mp.id = aj.id_mapel');
 
         $this->db->where('mp.mapel_jenis', $where);
+        $this->db->or_where('mp.mapel_jenis', 'Umum');
         $this->db->order_by('gr.id', 'ASC');
 
         return $this->db->get($this->third . ' as aj');
