@@ -46,7 +46,7 @@ class Mapel extends MY_Controller
                 'mapel_kode' => $post['kodeMapel'],
                 'mapel_nama' => $post['namaMapel'],
                 'mapel_jenis' => $post['mapelJenis'],
-                'mapel_jp' => $post['mapelJp'],
+                'mapel_jp' => $post['jamMapel'],
             );
 
             $id = $this->M_pelajaran->insert('tbl_mapel', $dataInsert);
@@ -95,7 +95,7 @@ class Mapel extends MY_Controller
                 'mapel_kode' => $post['kodeMapel'],
                 'mapel_nama' => $post['namaMapel'],
                 'mapel_jenis' => $post['mapelJenis'],
-                'mapel_jp' => $post['mapelJp'],
+                'mapel_jp' => $post['jamMapel'],
             );
             $this->M_pelajaran->update('tbl_mapel', $dataUpdate, array('id' => $post['id']));
 
