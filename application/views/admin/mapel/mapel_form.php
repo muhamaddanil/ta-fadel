@@ -62,10 +62,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-3">Durasi Pelajaran Dalam Seminggu </label>
+                        <label for="" class="col-3">Durasi Jam Pelajaran </label>
                         <div class="col-9">
                             <input type="number" min="1" name="jamMapel" id="" class="form-control form-control-sm" value="<?= $inmapel['mapel_jp'] ?>">
-                            <small>Masukkan durasi pelajaran dengan angka, semisal apabila 2 jam pelajaran masukkan 2, dan seterusnya</small>
+                            <small>Masukkan durasi jam pelajaran</small>
                         </div>
                     </div>
 

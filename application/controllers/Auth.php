@@ -30,7 +30,7 @@ class Auth extends MY_Controller
                     if (password_verify($password, $sess_data['password'])) {
                         $this->session->set_userdata($sess_data);
                         if ($sess_data['user_level'] == 1) {
-                            redirect('superadmin/dashboard');
+                            redirect('admin/dashboard');
                         } else if ($sess_data['user_level'] == 4 or $sess_data['user_level'] == 5) {
                             redirect('admin/dashboard');
                         }

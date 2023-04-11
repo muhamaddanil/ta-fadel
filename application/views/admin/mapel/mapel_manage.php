@@ -42,6 +42,7 @@
                                     <th>Kode Mapel</th>
                                     <th>Mata Pelajaran</th>
                                     <th>Durasi Mapel</th>
+                                    <th>Jenis Mapel</th>
                                     <th>Guru Terkait</th>
                                     <?php if ($this->session->userdata('user_level') == 1) { ?>
                                         <th>Aksi</th>
@@ -56,6 +57,7 @@
                                         <td><?= ucwords($l['mapel_kode']) ?></td>
                                         <td><?= ucwords($l['mapel_nama']) ?></td>
                                         <td><?= ucwords($l['mapel_jp']) ?> Jam Pelajaran</td>
+                                        <td><?= ucwords($l['mapel_jenis']) ?> </td>
                                         <td><?= ucwords($l['total_guru']) ?></td>
 
                                         <!-- <td>0</td> -->

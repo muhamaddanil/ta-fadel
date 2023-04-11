@@ -178,12 +178,30 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url() ?>auth/logout">
+          <a class="nav-link" data-toggle="modal" data-target="#logoutModal" href="#">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
       </ul>
     </nav>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered w-25" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <?= form_open('auth/logout') ?>
+            <h6 class="text-center mb-3">Apakah yakin ingin logout?</h6>
+            <div class="form-group text-center m-0">
+              <button type="button" data-dismiss="modal" class="btn-secondary btn-sm btn">Tidak, Kembali</button>
+              <button type="submit" id="confirmDelBtn" class="btn-danger btn-sm btn">Iya, saya yakin</button>
+            </div>
+            <?= form_close() ?>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
