@@ -142,10 +142,22 @@ class Jadwal extends MY_Controller
                     $tempArray[$index]['conflict_value'] = round($constValue / $tempArray[$index]['cg_value'], 4);
                 }
 
-                if ($key % 3 == 0)
+                if ($key % 9 == 0)
+                    array_multisort(array_column($tempArray, 'mapel_nama'), SORT_ASC, $tempArray);
+                elseif ($key % 8 == 0)
                     array_multisort(array_column($tempArray, 'mapel_nama'), SORT_DESC, $tempArray);
-                elseif ($key % 2 == 0)
+                elseif ($key % 7 == 0)
+                    array_multisort(array_column($tempArray, 'mapel_jp'), SORT_DESC, $tempArray);
+                elseif ($key % 6 == 0)
                     array_multisort(array_column($tempArray, 'mapel_jp'), SORT_ASC, $tempArray);
+                elseif ($key % 5 == 0)
+                    array_multisort(array_column($tempArray, 'conflict_value'), SORT_DESC, $tempArray);
+                elseif ($key % 4 == 0)
+                    array_multisort(array_column($tempArray, 'conflict_value'), SORT_ASC, $tempArray);
+                elseif ($key % 3 == 0)
+                    array_multisort(array_column($tempArray, 'guru_nama'), SORT_ASC, $tempArray);
+                elseif ($key % 2 == 0)
+                    array_multisort(array_column($tempArray, 'cg_value'), SORT_ASC, $tempArray);
                 else
                     array_multisort(array_column($tempArray, 'guru_nama'), SORT_DESC, $tempArray);
 
